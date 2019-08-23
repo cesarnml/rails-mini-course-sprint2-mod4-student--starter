@@ -4,7 +4,7 @@ class Reward < ApplicationRecord
   scope :active, -> { where(deactivated_at: nil) }
 
   def available?
-    deactivated_at.nil? && inventory > 0
+    deactivated_at.nil? && inventory.positive?
   end
 
   def restock
